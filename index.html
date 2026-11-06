@@ -1,544 +1,306 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gali Adrian S. Nones — Portfolio UI/UX</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        oceanic: '#13253F',
-                        taupe: '#9E8B78',
-                        'taupe-light': '#C5B5A4',
-                        'earth-bg': '#E6E4E0',
-                        'dark-card': '#1B3152'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <title>Gali Adrian S. Nones | Portfolio</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Smooth transitions rule specified by user */
+        :root {
+            --bg-top: #e0e0e0;
+            --bg-mid: #9c8470;
+            --bg-bottom: #312b3c;
+            --text-color: #1a1a1a;
+            --text-light: #f4f4f4;
+            --accent: #d4a373;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --transition-speed: 0.5s;
+        }
+
         * {
-            transition: all 0.5s ease;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #E6E4E0;
-            color: #13253F;
+            background-color: var(--bg-bottom);
+            color: var(--text-light);
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .serif-font {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Glassmorphism styling */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 700px;
+            background: rgba(49, 43, 60, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .glass-dark {
-            background: rgba(19, 37, 63, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(158, 139, 120, 0.3);
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            text-decoration: none;
         }
 
-        /* Stenciled / Outline Typography styling inspired by the reference photo */
-        .outline-text {
-            color: transparent;
-            -webkit-text-stroke: 1.5px #13253F;
-        }
-        .outline-text-light {
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.8);
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.8;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
         }
-        ::-webkit-scrollbar-track {
-            background: #E6E4E0;
+
+        nav ul li a:hover, nav ul li a.active {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--accent);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #9E8B78;
-            border-radius: 4px;
+
+        /* Hero Section */
+        hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-top) 0%, var(--bg-mid) 50%, var(--bg-bottom) 100%);
+            overflow: hidden;
+            padding: 6rem 2rem 2rem 2rem;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 80vh;
+            background: var(--bg-mid);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Geometric background layers matching first image layout */
+        .hero-bg-top-shape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: var(--bg-top);
+            clip-path: polygon(0 0, 100% 0, 100% 60%, 70% 100%, 0 70%);
+            z-index: 1;
+        }
+
+        .hero-bg-bottom-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 45%;
+            background: var(--bg-bottom);
+            clip-path: polygon(0 30%, 70% 0, 100% 30%, 100% 100%, 0 100%);
+            z-index: 1;
+        }
+
+        /* Typography Content */
+        .hero-content {
+            position: absolute;
+            left: 5rem;
+            bottom: 4rem;
+            z-index: 3;
+            max-width: 550px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            text-transform: uppercase;
+            color: var(--text-light);
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.4);
+            letter-spacing: -1px;
+        }
+
+        .hero-content h1 span {
+            display: block;
+            color: var(--accent);
+        }
+
+        .hero-content p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            opacity: 0.85;
+        }
+
+        /* Profile Image Positioned Correctly to Match Layout Reference */
+        .hero-image-wrapper {
+            position: absolute;
+            right: 4rem;
+            bottom: 0;
+            height: 90%;
+            z-index: 3;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            pointer-events: none;
+        }
+
+        .hero-image-wrapper img {
+            height: 105%;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(-20px 20px 40px rgba(26, 23, 34, 0.6)) contrast(1.05) brightness(0.98);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+            animation: subtleFloat 6s ease-in-out infinite;
+            pointer-events: auto;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .hero-image-wrapper img:hover {
+            filter: drop-shadow(-25px 25px 50px rgba(212, 163, 115, 0.45)) contrast(1.1) brightness(1.02);
+            transform: scale(1.02) translateY(-4px);
+        }
+
+        /* Responsive Mobile Navigation Shift (Bottom Dock) */
+        @media (max-width: 768px) {
+            header {
+                top: auto;
+                bottom: 1.5rem;
+                width: 92%;
+                max-width: 400px;
+                padding: 0.7rem 1.2rem;
+                background: rgba(49, 43, 60, 0.9);
+                backdrop-filter: blur(16px);
+            }
+
+            .logo {
+                font-size: 0.95rem;
+            }
+
+            nav ul {
+                gap: 0.8rem;
+            }
+
+            nav ul li a {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero-container {
+                flex-direction: column;
+                height: auto;
+                min-height: 550px;
+                padding: 2rem 1.5rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                position: relative;
+                left: auto;
+                bottom: auto;
+                margin-bottom: 1.5rem;
+                max-width: 100%;
+            }
+
+            .hero-content p {
+                margin: 0.8rem auto 0 auto;
+            }
+
+            .hero-image-wrapper {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                height: auto;
+                justify-content: center;
+            }
+
+            .hero-image-wrapper img {
+                max-height: 320px;
+                height: auto;
+                animation: none;
+            }
         }
     </style>
 </head>
-<body class="bg-[#E6E4E0] text-[#13253F] antialiased selection:bg-[#9E8B78] selection:text-white">
+<body>
 
-    <!-- Toast Notification Box -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 glass-dark text-white px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-[#9E8B78]/40">
-        <i class="fa-solid fa-circle-check text-[#9E8B78]"></i>
-        <span id="toast-message" class="text-sm font-medium">Action successful</span>
-    </div>
-
-    <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-40 px-6 py-4">
-        <nav class="max-w-7xl mx-auto glass-card px-6 py-3 rounded-2xl shadow-lg flex items-center justify-between">
-            <a href="#" class="heading-font text-lg font-bold tracking-wider text-oceanic flex items-center gap-2">
-                <span class="w-3 h-3 bg-taupe rounded-full inline-block"></span>
-                GA.NONES
-            </a>
-
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-oceanic/80">
-                <a href="#hero" class="hover:text-oceanic hover:scale-105">Home</a>
-                <a href="#showcase" class="hover:text-oceanic hover:scale-105">Showcase</a>
-                <a href="#about" class="hover:text-oceanic hover:scale-105">Concept</a>
-                <a href="#contact" class="hover:text-oceanic hover:scale-105">Contact</a>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <button onclick="showToast('Initiating Interactive Mode...')" class="bg-oceanic text-white px-5 py-2.5 rounded-xl font-medium text-sm shadow-md hover:bg-taupe hover:shadow-lg hover:scale-105">
-                    Let's Talk
-                </button>
-                <button id="mobile-menu-btn" class="md:hidden text-oceanic text-xl p-1.5 focus:outline-none">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
+    <!-- Navigation Header -->
+    <header>
+        <a href="#" class="logo">Gali.Dev</a>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden max-w-7xl mx-auto mt-2 glass-dark text-white p-6 rounded-2xl shadow-2xl flex flex-col gap-4">
-            <a href="#hero" class="mobile-link text-lg font-medium hover:text-taupe-light">Home</a>
-            <a href="#showcase" class="mobile-link text-lg font-medium hover:text-taupe-light">Showcase</a>
-            <a href="#about" class="mobile-link text-lg font-medium hover:text-taupe-light">Concept</a>
-            <a href="#contact" class="mobile-link text-lg font-medium hover:text-taupe-light">Contact</a>
-        </div>
     </header>
 
-    <!-- Hero Section: Inspired by the uploaded geometric taupe/navy design & cutout portrait -->
-    <section id="hero" class="relative min-h-screen pt-32 pb-20 px-6 flex items-center overflow-hidden">
-        
-        <!-- Background Geometric Overlay Shapes representing the photo's architecture -->
-        <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-            <!-- Taupe geometric polygon background equivalent -->
-            <div class="absolute top-0 right-0 w-full lg:w-3/5 h-2/3 bg-[#A89884] opacity-80 rounded-bl-[120px] shadow-inner" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);"></div>
-            <!-- Oceanic Navy bottom block equivalent -->
-            <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-[#13253F] shadow-2xl" style="clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);"></div>
-        </div>
+    <!-- Hero Section -->
+    <hero>
+        <div class="hero-container">
+            <!-- Background geometric layers inspired by image 1 -->
+            <div class="hero-bg-top-shape"></div>
+            <div class="hero-bg-bottom-shape"></div>
 
-        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-            
-            <!-- Left Column: Stenciled/Outline Typography Layout -->
-            <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
-                <div class="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full w-fit shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-taupe animate-pulse"></span>
-                    <span class="text-xs uppercase tracking-widest font-semibold text-oceanic">Portfolio UI/UX Concept</span>
-                </div>
-
-                <div class="space-y-1">
-                    <h1 class="heading-font text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-oceanic leading-none">
-                        GALI ADRIAN
-                    </h1>
-                    <!-- Layered shadow outline text mimicking the reference image -->
-                    <div class="relative">
-                        <h2 class="heading-font text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight outline-text-light absolute -top-1 -left-1 select-none pointer-events-none opacity-40">
-                            S. NONES
-                        </h2>
-                        <h2 class="heading-font text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white drop-shadow-md">
-                            S. NONES
-                        </h2>
-                    </div>
-                </div>
-
-                <p class="text-white/90 text-lg max-w-xl font-light leading-relaxed drop-shadow">
-                    A refined synthesis of deep oceanic navy architecture, structured geometric planes, and smooth <code class="bg-white/20 px-2 py-0.5 rounded text-xs font-mono">transition: 0.5s</code> interactions. Designed with precision and modern glassmorphic clarity.
-                </p>
-
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#showcase" class="bg-taupe text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-white hover:text-oceanic hover:scale-105 flex items-center gap-3">
-                        <span>Explore Showcase</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <button onclick="triggerInteractiveDemo()" class="glass-dark text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-oceanic hover:scale-105 border border-white/20 flex items-center gap-2">
-                        <i class="fa-solid fa-wand-magic-sparkles text-taupe"></i>
-                        <span>Test UI States</span>
-                    </button>
-                </div>
+            <!-- Hero Text -->
+            <div class="hero-content">
+                <h1>Gali Adrian <span>S. Nones</span></h1>
+                <p>IT Student & Frontend Developer crafting immersive UI/UX experiences and responsive web applications.</p>
             </div>
 
-            <!-- Right Column: Layered Cutout Portrait Vibe in Glass Container -->
-            <div class="lg:col-span-5 flex justify-center">
-                <div class="relative w-full max-w-md">
-                    <!-- Glassmorphic backing frame -->
-                    <div class="absolute -inset-4 glass-card rounded-3xl shadow-2xl transform rotate-2"></div>
-                    
-                    <!-- Main Portrait Card -->
-                    <div class="relative glass-dark p-6 rounded-3xl shadow-2xl border border-taupe/40 overflow-hidden group">
-                        <div class="absolute top-4 right-4 bg-taupe/30 backdrop-blur-md px-3 py-1 rounded-full text-xs text-white tracking-widest font-mono">
-                            UI_CUTOUT_V1
-                        </div>
-
-                        <!-- Stylized cutout portrait representation using clean vectors & placeholder styling matching photo pose -->
-                        <div class="w-full h-80 sm:h-96 bg-gradient-to-b from-[#1B3152] to-[#13253F] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden shadow-inner border border-white/10">
-                            <!-- Geometric background lines -->
-                            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#9E8B78_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                            
-                            <!-- Silhouette / Cutout Graphic representation -->
-                            <div class="relative z-10 flex flex-col items-center group-hover:scale-105 transition-transform duration-700">
-                                <div class="w-32 h-32 rounded-full bg-taupe/30 border-2 border-taupe flex items-center justify-center shadow-2xl mb-4">
-                                    <i class="fa-solid fa-user-tie text-6xl text-white/90"></i>
-                                </div>
-                                <div class="text-center">
-                                    <h3 class="heading-font text-white font-bold text-xl">Gali Adrian S. Nones</h3>
-                                    <p class="text-taupe-light text-sm tracking-wide">Creative Director & UI/UX Architect</p>
-                                </div>
-                            </div>
-
-                            <!-- Interactive status tag at bottom of card -->
-                            <div class="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-md p-3 rounded-xl flex items-center justify-between text-xs text-white">
-                                <span class="flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                    <span>System Active & Responsive</span>
-                                </span>
-                                <span class="font-mono text-taupe-light">0.5s Ease</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Dynamic Showcase Tabs Section with Glass Cards -->
-    <section id="showcase" class="py-24 px-6 bg-[#E6E4E0] relative">
-        <div class="max-w-7xl mx-auto">
-            
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                <span class="text-xs uppercase font-bold tracking-widest text-taupe">Interactive Portfolio Work</span>
-                <h2 class="heading-font text-4xl sm:text-5xl font-black text-oceanic uppercase">
-                    Curated UI & Design Showcase
-                </h2>
-                <p class="text-oceanic/70">
-                    Switch between categories to explore glass-morphic UI components, design systems, and responsive layout structures.
-                </p>
-
-                <!-- Interactive Filter Tabs -->
-                <div class="flex flex-wrap justify-center gap-3 pt-6">
-                    <button onclick="filterProjects('all')" class="tab-btn active-tab px-6 py-2.5 rounded-xl font-semibold text-sm bg-oceanic text-white shadow-md">All Projects</button>
-                    <button onclick="filterProjects('ui')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm glass-card text-oceanic hover:bg-oceanic hover:text-white shadow-md">UI/UX Design</button>
-                    <button onclick="filterProjects('web')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm glass-card text-oceanic hover:bg-oceanic hover:text-white shadow-md">Web Apps</button>
-                    <button onclick="filterProjects('concept')" class="tab-btn px-6 py-2.5 rounded-xl font-semibold text-sm glass-card text-oceanic hover:bg-oceanic hover:text-white shadow-md">Architecture</button>
-                </div>
-            </div>
-
-            <!-- Project Cards Grid -->
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project 1 -->
-                <div class="project-card glass-card rounded-3xl p-6 shadow-xl hover:shadow-2xl hover:-translate-y-2 border border-white/60 flex flex-col justify-between" data-category="ui">
-                    <div>
-                        <div class="h-48 rounded-2xl bg-gradient-to-br from-oceanic to-[#1B3152] mb-6 flex items-center justify-center relative overflow-hidden group">
-                            <div class="absolute inset-0 bg-taupe/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <i class="fa-solid fa-layer-group text-5xl text-taupe-light"></i>
-                            <span class="absolute top-3 right-3 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono text-white">UI/UX</span>
-                        </div>
-                        <span class="text-xs font-bold text-taupe uppercase tracking-wider">Design System</span>
-                        <h3 class="heading-font text-2xl font-bold text-oceanic mt-1 mb-2">Oceanic Glassmorphism</h3>
-                        <p class="text-oceanic/70 text-sm leading-relaxed">
-                            A comprehensive UI design system blending deep navy (#13253F) and muted taupe tones with modern backdrop filters.
-                        </p>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-oceanic/10 flex items-center justify-between">
-                        <span class="text-xs font-mono text-oceanic/60">Updated 2026</span>
-                        <button onclick="openProjectModal('Oceanic Glassmorphism', 'A comprehensive UI design system blending deep navy (#13253F) and muted taupe tones with modern backdrop filters. Features fluid typography and accessible contrast ratios.')" class="bg-oceanic text-white px-4 py-2 rounded-xl text-xs font-semibold hover:bg-taupe">
-                            View Details
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card glass-card rounded-3xl p-6 shadow-xl hover:shadow-2xl hover:-translate-y-2 border border-white/60 flex flex-col justify-between" data-category="web">
-                    <div>
-                        <div class="h-48 rounded-2xl bg-gradient-to-br from-[#9E8B78] to-[#6E5B48] mb-6 flex items-center justify-center relative overflow-hidden group">
-                            <div class="absolute inset-0 bg-oceanic/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <i class="fa-solid fa-code text-5xl text-white"></i>
-                            <span class="absolute top-3 right-3 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono text-white">Web App</span>
-                        </div>
-                        <span class="text-xs font-bold text-taupe uppercase tracking-wider">Interactive Web</span>
-                        <h3 class="heading-font text-2xl font-bold text-oceanic mt-1 mb-2">Geometric Portfolio Base</h3>
-                        <p class="text-oceanic/70 text-sm leading-relaxed">
-                            Structured geometric layouts implementing 0.5s CSS transitions, responsive grid systems, and interactive state triggers.
-                        </p>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-oceanic/10 flex items-center justify-between">
-                        <span class="text-xs font-mono text-oceanic/60">Updated 2026</span>
-                        <button onclick="openProjectModal('Geometric Portfolio Base', 'Structured geometric layouts implementing 0.5s CSS transitions, responsive grid systems, and interactive state triggers. Built with Tailwind CSS and custom glass utilities.')" class="bg-oceanic text-white px-4 py-2 rounded-xl text-xs font-semibold hover:bg-taupe">
-                            View Details
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card glass-card rounded-3xl p-6 shadow-xl hover:shadow-2xl hover:-translate-y-2 border border-white/60 flex flex-col justify-between" data-category="concept">
-                    <div>
-                        <div class="h-48 rounded-2xl bg-gradient-to-br from-oceanic via-[#1B3152] to-[#9E8B78] mb-6 flex items-center justify-center relative overflow-hidden group">
-                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <i class="fa-solid fa-compass-drafting text-5xl text-taupe-light"></i>
-                            <span class="absolute top-3 right-3 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono text-white">Concept</span>
-                        </div>
-                        <span class="text-xs font-bold text-taupe uppercase tracking-wider">UI Architecture</span>
-                        <h3 class="heading-font text-2xl font-bold text-oceanic mt-1 mb-2">Stenciled Typography Layout</h3>
-                        <p class="text-oceanic/70 text-sm leading-relaxed">
-                            Exploration of bold stenciled typography and layered cutout portrait aesthetics inspired by modern architectural photography.
-                        </p>
-                    </div>
-                    <div class="pt-6 mt-6 border-t border-oceanic/10 flex items-center justify-between">
-                        <span class="text-xs font-mono text-oceanic/60">Updated 2026</span>
-                        <button onclick="openProjectModal('Stenciled Typography Layout', 'Exploration of bold stenciled typography and layered cutout portrait aesthetics inspired by modern architectural photography.')" class="bg-oceanic text-white px-4 py-2 rounded-xl text-xs font-semibold hover:bg-taupe">
-                            View Details
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Concept & Philosophy Section -->
-    <section id="about" class="py-24 px-6 bg-oceanic text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#9E8B78_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        
-        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6">
-                <span class="text-xs font-bold tracking-widest uppercase text-taupe-light">Design Philosophy</span>
-                <h2 class="heading-font text-4xl sm:text-5xl font-black uppercase tracking-tight">
-                    Precision, Geometry & Smooth Motion
-                </h2>
-                <p class="text-white/80 leading-relaxed font-light text-lg">
-                    Every element in this portfolio concept is crafted to reflect balance between structural architecture and fluid interaction. Using <code class="bg-white/10 px-2 py-0.5 rounded text-taupe font-mono">transition: all 0.5s ease</code>, hover states and dynamic switches respond with natural fluidity.
-                </p>
-
-                <div class="grid grid-cols-2 gap-6 pt-4">
-                    <div class="glass-dark p-6 rounded-2xl border border-taupe/30">
-                        <h3 class="heading-font text-3xl font-bold text-taupe-light mb-1">0.5s</h3>
-                        <p class="text-sm text-white/70">Seamless CSS Transition Speed</p>
-                    </div>
-                    <div class="glass-dark p-6 rounded-2xl border border-taupe/30">
-                        <h3 class="heading-font text-3xl font-bold text-taupe-light mb-1">100%</h3>
-                        <p class="text-sm text-white/70">Responsive Grid Layout</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive UI Demonstration Card -->
-            <div class="glass-dark p-8 rounded-3xl border border-taupe/40 shadow-2xl space-y-6">
-                <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                    <span class="heading-font font-bold text-lg">Interactive State Tester</span>
-                    <span class="text-xs font-mono text-taupe">Live Sandbox</span>
-                </div>
-
-                <div class="space-y-4">
-                    <label class="block text-sm text-white/80 font-medium">Test Interactive Theme Accent:</label>
-                    <div class="flex gap-3">
-                        <button onclick="setThemeAccent('#9E8B78')" class="w-10 h-10 rounded-full bg-[#9E8B78] border-2 border-white shadow-md hover:scale-110"></button>
-                        <button onclick="setThemeAccent('#3B82F6')" class="w-10 h-10 rounded-full bg-blue-500 border-2 border-white shadow-md hover:scale-110"></button>
-                        <button onclick="setThemeAccent('#10B981')" class="w-10 h-10 rounded-full bg-emerald-500 border-2 border-white shadow-md hover:scale-110"></button>
-                        <button onclick="setThemeAccent('#F59E0B')" class="w-10 h-10 rounded-full bg-amber-500 border-2 border-white shadow-md hover:scale-110"></button>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <p class="text-sm text-white/80 font-medium">Sample Interactive Slider:</p>
-                    <input type="range" min="0" max="100" value="75" class="w-full accent-taupe cursor-pointer" oninput="showToast('Slider value updated: ' + this.value + '%')">
-                </div>
-
-                <button onclick="showToast('Sandbox interaction successful!')" class="w-full py-3 bg-taupe text-white rounded-xl font-semibold shadow-lg hover:bg-white hover:text-oceanic">
-                    Trigger Feedback Toast
-                </button>
+            <!-- Profile Image Positioned Correctly -->
+            <div class="hero-image-wrapper">
+                <img src="profile.png" alt="Gali Adrian S. Nones Profile">
             </div>
         </div>
-    </section>
+    </hero>
 
-    <!-- Contact & Footer Section -->
-    <section id="contact" class="py-24 px-6 bg-[#E6E4E0] relative">
-        <div class="max-w-4xl mx-auto glass-card rounded-3xl p-8 sm:p-12 shadow-2xl border border-white">
-            <div class="text-center space-y-4 mb-10">
-                <span class="text-xs uppercase font-bold tracking-widest text-taupe">Get In Touch</span>
-                <h2 class="heading-font text-3xl sm:text-4xl font-black text-oceanic uppercase">Let's Build Something Exceptional</h2>
-                <p class="text-oceanic/70 max-w-lg mx-auto text-sm">
-                    Ready to collaborate on your next UI/UX portfolio or digital architecture project? Send a message below.
-                </p>
-            </div>
-
-            <form onsubmit="handleFormSubmit(event)" class="space-y-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-oceanic/80 mb-2">Your Name</label>
-                        <input type="text" required placeholder="Gali Adrian" class="w-full px-4 py-3 rounded-xl bg-white/70 border border-oceanic/20 text-oceanic focus:outline-none focus:border-taupe shadow-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-oceanic/80 mb-2">Your Email</label>
-                        <input type="email" required placeholder="adrian@example.com" class="w-full px-4 py-3 rounded-xl bg-white/70 border border-oceanic/20 text-oceanic focus:outline-none focus:border-taupe shadow-sm">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-oceanic/80 mb-2">Message</label>
-                    <textarea rows="4" required placeholder="Tell me about your project..." class="w-full px-4 py-3 rounded-xl bg-white/70 border border-oceanic/20 text-oceanic focus:outline-none focus:border-taupe shadow-sm"></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="bg-oceanic text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:bg-taupe hover:scale-105">
-                        Send Message
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <footer class="max-w-7xl mx-auto mt-20 pt-8 border-t border-oceanic/10 flex flex-col sm:flex-row items-center justify-between text-xs text-oceanic/60">
-            <p>&copy; 2026 Gali Adrian S. Nones. All rights reserved.</p>
-            <div class="flex items-center gap-6 mt-4 sm:mt-0">
-                <a href="#" class="hover:text-oceanic">Privacy Policy</a>
-                <a href="#" class="hover:text-oceanic">Terms of Service</a>
-                <a href="#hero" class="hover:text-oceanic">Back to Top <i class="fa-solid fa-arrow-up ml-1"></i></a>
-            </div>
-        </footer>
-    </section>
-
-    <!-- Modal for Project Details -->
-    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-        <div id="modal-content" class="glass-dark text-white max-w-lg w-full p-8 rounded-3xl shadow-2xl border border-taupe/40 transform scale-95 transition-transform duration-300">
-            <div class="flex justify-between items-center mb-6">
-                <h3 id="modal-title" class="heading-font text-2xl font-bold">Project Title</h3>
-                <button onclick="closeProjectModal()" class="text-white/70 hover:text-white p-2">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            <p id="modal-desc" class="text-white/80 text-sm leading-relaxed mb-8">
-                Project description goes here.
-            </p>
-            <div class="flex justify-end gap-4">
-                <button onclick="closeProjectModal()" class="bg-white/10 hover:bg-white/20 text-white px-6 py-2.5 rounded-xl text-sm font-semibold">
-                    Close
-                </button>
-                <button onclick="showToast('Redirecting to live demo...'); closeProjectModal();" class="bg-taupe hover:bg-white hover:text-oceanic text-white px-6 py-2.5 rounded-xl text-sm font-semibold">
-                    Live Demo
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript for Interactivity -->
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Toast Notification Function
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.textContent = message;
-            
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 3500);
-        }
-
-        // Project Filtering
-        function filterProjects(category) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-oceanic', 'text-white');
-                btn.classList.add('glass-card', 'text-oceanic');
-            });
-            event.target.classList.remove('glass-card', 'text-oceanic');
-            event.target.classList.add('bg-oceanic', 'text-white');
-
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'flex';
-                    setTimeout(() => card.style.opacity = '1', 50);
-                } else {
-                    card.style.opacity = '0';
-                    setTimeout(() => card.style.display = 'none', 300);
-                }
-            });
-        }
-
-        // Project Modal Handling
-        function openProjectModal(title, description) {
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-desc').textContent = description;
-            
-            const modal = document.getElementById('project-modal');
-            const content = document.getElementById('modal-content');
-            
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            content.classList.remove('scale-95');
-            content.classList.add('scale-100');
-        }
-
-        function closeProjectModal() {
-            const modal = document.getElementById('project-modal');
-            const content = document.getElementById('modal-content');
-            
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            content.classList.remove('scale-100');
-            content.classList.add('scale-95');
-        }
-
-        // Theme Accent Changer for sandbox
-        function setThemeAccent(color) {
-            document.documentElement.style.setProperty('--accent-color', color);
-            showToast('Accent color updated successfully!');
-        }
-
-        // Trigger Interactive Demo
-        function triggerInteractiveDemo() {
-            showToast('Interactive Sandbox Mode Active!');
-            window.scrollTo({ top: document.getElementById('about').offsetTop - 80, behavior: 'smooth' });
-        }
-
-        // Form Submission Handler
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            showToast('Message sent successfully! Thank you.');
-            e.target.reset();
-        }
-    </script>
 </body>
 </html>
